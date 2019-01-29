@@ -1,0 +1,10 @@
+OUTER APPLY 
+(				
+			SELECT [Event] = PE.SPORTINGEVENTID
+			FROM #EventTable
+				INNER JOIN MicrosoftDynamicsAX_ODS.dbo.FBFPRODUCTEVENT PE
+					ON #EventTable.[Event] = PE.SPORTINGEVENTID
+					AND C.FBFProductID = PE.PRODUCTID    	
+			ORDER BY FBFProductID
+			OFFSET 0 ROWS FETCH FIRST 1 ROWS ONLY
+) tblEvents
